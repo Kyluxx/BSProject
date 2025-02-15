@@ -1,18 +1,26 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyluxx Hotel Reservation</title>
-    <link rel="stylesheet" href="index-style.css">
+    <link rel="stylesheet" href="css/index-style.css">
 </head>
 <body>
     <!-- Navbar -->
     <div class="navbar">
         <div class="logo">Kyluxx Hotel</div>
         <div class="auth">
-            <a href="#">Login</a>
-            <a href="#">Sign Up</a>
+<?php 
+if(isset($_SESSION['user_id'])){
+echo "<a href='profile.php'>" . htmlspecialchars($_SESSION['name']) . "</a>";
+}else{
+echo "<a href='login.php'>Login</a>
+<a href='register.php'>Sign Up</a>";
+}?>
         </div>
     </div>
 
