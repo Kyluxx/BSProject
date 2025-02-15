@@ -1,7 +1,18 @@
 <?php
+include 'conn.php';
+if(!isset($_SESSION['user_id'])) header("Location: login.php");
 date_default_timezone_set('Asia/Jakarta');
+if(!isset($_GET['r'])) header("Location: index.php");
 $rid = $_GET['r'];
-$room = 'r' . $rid . '.jpg';
+$roomimage = 'r' . $rid . '.jpg';
+$query = "SELECT * FROM room WHERE rid = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $rid);
+$stmt->execute();
+$result = $stmt->get_result(); 
+$room = $result->fetch_assoc(); 
+$stmt->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -10,22 +21,34 @@ $room = 'r' . $rid . '.jpg';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Room</title>
-    <link rel="stylesheet" href="booking-style.css">
+    <link rel="stylesheet" href="css/booking-style.css">
 </head>
 <body>
 
     <!-- Booking Details -->
     <div class="booking-container">
         <div class="room-preview">
-            <img src="assets/rooms/<?php echo $room; ?>" alt="Room Preview">
-            <h2>Deluxe Room</h2>
-            <p>Spacious room with sea view.</p>
-            <p><strong>Max:</strong> 2 Adults, 1 Child</p>
-            <p><strong>Price:</strong> $120/night</p>
+          <?php 
+          if(isset($_GET['err'])){
+          if($_GET['err'] == 'totaldays'){
+            echo "<p style='color: red; font-weight: bold;'>Invalid Check in / Check out date!</p>";
+          }
+          if($_GET['err'] == 'noadult'){
+            echo "<p style='color: red; font-weight: bold;'>Atleast 1 adult is needed!</p>";
+          }
+          if($_GET['err'] == 'capexceed'){
+            echo "<p style='color: red; font-weight: bold;'>Maximum Capacity Exceeded!</p>";
+          }
+          }?>
+            <img src="assets/rooms/<?php echo $roomimage;?>" alt="Room Preview">
+            <h2><?php echo htmlspecialchars($room['room_name']); ?></h2>
+            <p><?php echo htmlspecialchars($room['details']); ?></p>
+            <p><strong>Max:</strong> <?php echo htmlspecialchars($room['adult_mcap']); ?> Adults, <?php echo htmlspecialchars($room['child_mcap']); ?> Child</p>
+            <p><strong>Price:</strong> $<?php echo htmlspecialchars($room['price']); ?>/night</p>
         </div>
 
         <!-- Booking Form -->
-        <form action="payment.php" method="POST">
+        <form action="payment.php?r=<?php echo $rid?>" method="POST">
             <label>Check-in Date:</label>
             <input type="date" name="checkin" required>
 
@@ -41,6 +64,5 @@ $room = 'r' . $rid . '.jpg';
             <button type="submit">Continue to Payment</button>
         </form>
     </div>
-
 </body>
 </html>

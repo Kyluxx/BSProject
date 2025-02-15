@@ -1,0 +1,43 @@
+body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .success-message {
+            color: #28a745;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .details {
+            margin-top: 15px;
+            text-align: left;
+        }
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-home:hover {
+            background: #0056b3;
+        }
