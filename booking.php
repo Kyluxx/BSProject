@@ -1,8 +1,15 @@
 <?php
+session_start();
 include 'conn.php';
-if(!isset($_SESSION['user_id'])) header("Location: login.php");
+if(!isset($_SESSION['user_id'])) {  
+  header("Location: login.php");
+  exit;
+}
 date_default_timezone_set('Asia/Jakarta');
-if(!isset($_GET['r'])) header("Location: index.php");
+if(!isset($_GET['r'])) {
+  header("Location: index.php"); 
+  exit;
+}
 $rid = $_GET['r'];
 $roomimage = 'r' . $rid . '.jpg';
 $query = "SELECT * FROM room WHERE rid = ?";

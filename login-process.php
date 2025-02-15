@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashed_password)) {
             $_SESSION['user_id'] = $uid;
             $_SESSION['name'] = $name;
-            echo "<script>alert('Login successful!'); window.location.href='dashboard.php';</script>";
+            echo "window.location.href='index.php';</script>";
             exit;
         } else {
             echo "<script>alert('Incorrect password.'); window.location.href='login.php';</script>";

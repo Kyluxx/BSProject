@@ -1,0 +1,75 @@
+
+        /* Tombol Buka */
+        .o-menu-btn {
+            position: relative;
+            font-size: larger;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Offcanvas */
+        .o-offcanvas {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            transition: right 0.3s ease-in-out;
+            padding: 20px;
+        }
+
+        /* Offcanvas aktif */
+        .o-offcanvas.active {
+            right: 0;
+        }
+
+        /* Offcanvas Header */
+        .o-offcanvas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .o-close-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Offcanvas Body */
+        .o-offcanvas-body p {
+            margin-bottom: 10px;
+        }
+
+        .o-divider {
+            border-top: 1px solid #ccc;
+            margin: 15px 0;
+        }
+
+        .o-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .o-btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .o-btn-danger {
+            background: #dc3545;
+            color: white;
+        }

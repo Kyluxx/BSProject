@@ -1,6 +1,7 @@
 <?php
+session_start();
 include 'conn.php';
-if(!isset($_GET['r'])) header("Location: index.php");
+if(!isset($_GET['r'])) { header("Location: index.php"); exit; }
 $rid = $_GET['r'];
 $roomimage = 'r' . $rid . '.jpg';
 $query = "SELECT * FROM room WHERE rid = ?";
@@ -21,14 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $total_price = $total_days * $room['price'];
         $adults = $_POST["adults"];
         $children = $_POST["children"];
-        if($adults <= 0) header("Location: booking.php?r=$rid&err=noadult");
-        if($adults > $room['adult_mcap'] || $children > $room['child_mcap']) header("Location: booking.php?r=$rid&err=capexceed");
+            if($adults <= 0) { header("Location: booking.php?r=$rid&err=noadult"); exit; }
+        if($adults > $room['adult_mcap'] || $children > $room['child_mcap']) { header("Location: booking.php?r=$rid&err=capexceed"); exit; }
         // Bisa lanjut proses booking atau simpan ke database di sini
     } else {
         header("Location: index.php");
+        exit;
     }
 } else {
   header("Location: index.php");
+  exit;
 }
 
 ?>
@@ -42,6 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container">
+        <?php if(isset($_GET['err'])){
+            if($_GET['err'] == balance) echo "<p style='color: red; font-weight: bold;'>Insufficient balance!</p>";
+        } ?>
         <h2>Payment</h2>
         
         <!-- Booking Summary -->
@@ -81,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Buat form baru
     let form = document.createElement("form");
     form.method = "POST";
-    form.action = paymentMethod == "cc" ? "cc-payment.php?r=<?php echo $rid?>" : "ac-payment.php";
+    form.action = paymentMethod == "cc" ? "cc-payment.php?r=<?php echo $rid?>" : "ac-payment.php?r=<?php echo $rid?>";
 
     // Tambahin input hidden buat data yang mau dikirim
     let inputs = {
@@ -92,6 +98,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         child: "<?php echo $children ?>"
     };
 
+    if (!total_days || !total_price || !adults || !children) {
+        alert("Invalid booking details.");
+        window.location.href = "index.php";
+    }
     for (let key in inputs) {
         let input = document.createElement("input");
         input.type = "hidden";

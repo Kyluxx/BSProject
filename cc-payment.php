@@ -1,5 +1,6 @@
 <?php
-if(!isset($_POST['total_days']) || !isset($_GET['r'])) header("Location: payment.php?err=invaliddata");
+session_start();
+if(!isset($_POST['total_days']) || !isset($_GET['r'])) { header("Location: payment.php?err=invaliddata"); exit; }
 ?>
 <!DOCTYPE html>
 <html lang="en">

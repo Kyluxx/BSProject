@@ -8,19 +8,20 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyluxx Hotel Reservation</title>
     <link rel="stylesheet" href="css/index-style.css">
+    <link rel="stylesheet" href="css/offcanvas.css">
 </head>
 <body>
     <!-- Navbar -->
     <div class="navbar">
         <div class="logo">Kyluxx Hotel</div>
         <div class="auth">
-<?php 
-if(isset($_SESSION['user_id'])){
-echo "<a href='profile.php'>" . htmlspecialchars($_SESSION['name']) . "</a>";
-}else{
-echo "<a href='login.php'>Login</a>
-<a href='register.php'>Sign Up</a>";
-}?>
+<?php if(isset($_SESSION['user_id'])): ?>
+    <a href='profile.php'><?php echo htmlspecialchars($_SESSION['name']); ?></a>
+    <a class='o-menu-btn' onclick='toggleOffcanvas()'>☰</a>
+<?php else: ?>
+    <a href='login.php'>Login</a>
+    <a href='register.php'>Sign Up</a>
+<?php endif; ?>
         </div>
     </div>
 
@@ -74,6 +75,31 @@ echo "<a href='login.php'>Login</a>
             </div>
         </div>
     </div>
+
+    <?php
+    if(isset($_SESSION['user_id'])):
+?>
+    <div class="o-offcanvas" id="offcanvas">
+        <div class="o-offcanvas-header">
+            <h3>Akun Anda</h3>
+            <button class="o-close-btn" onclick="toggleOffcanvas()">✖</button>
+        </div>
+        <div class="o-offcanvas-body">
+            <p><strong>Nama:</strong> <?php echo htmlspecialchars($_SESSION['name']); ?></p>
+            <p><strong>Balance:</strong> Rp1.500.000</p>
+            <hr class="o-divider">
+            <button class="o-btn o-btn-primary" onclick="location.href='reservasi.php'">Reservasi Anda</button>
+            <button class="o-btn o-btn-danger" onclick="location.href='logout.php'">Log Out</button>
+        </div>
+    </div>
+<?php endif; ?>
+
+
+    <script>
+        function toggleOffcanvas() {
+            document.getElementById("offcanvas").classList.toggle("active");
+        }
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             console.log("DOM Loaded")
