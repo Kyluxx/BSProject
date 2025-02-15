@@ -4,9 +4,9 @@
 
 --- Static Feature [ Main Page ] ---
 
-Navbar w/login or sign up
-A welcoming message
-Rooms Preview
+Navbar Left: {HotelName} Right: login or sign up
+A welcoming message ( With a hero slider automatic)
+Rooms Preview ( Image, Title, Details, Book Now button )
 
 
 --- Specified Feature ---
