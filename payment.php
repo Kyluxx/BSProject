@@ -11,6 +11,9 @@ $stmt->execute();
 $result = $stmt->get_result(); 
 $room = $result->fetch_assoc(); 
 $stmt->close();
+
+    //var_dump($_POST); // Debugging
+    
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["checkin"], $_POST["checkout"], $_POST["adults"], $_POST["children"])) {
         $checkin = new DateTime($_POST["checkin"]);
@@ -98,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         child: "<?php echo $children ?>"
     };
 
-    if (!total_days || !total_price || !adults || !children) {
+    if (!inputs.total_days || !inputs.total_price || !inputs.adult || !inputs.child) {
         alert("Invalid booking details.");
         window.location.href = "index.php";
     }

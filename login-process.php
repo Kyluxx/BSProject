@@ -19,13 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashed_password)) {
             $_SESSION['user_id'] = $uid;
             $_SESSION['name'] = $name;
-            echo "window.location.href='index.php';</script>";
+            header("Location: index.php");
             exit;
         } else {
-            echo "<script>alert('Incorrect password.'); window.location.href='login.php';</script>";
+            echo "window.location.href='login.php?err=wrongpassword';</script>";
         }
     } else {
-        echo "<script>alert('User not found.'); window.location.href='login.php';</script>";
+        echo "<script>alert('User not found.'); window.location.href='login.php?nouser';</script>";
     }
 
     $stmt->close();

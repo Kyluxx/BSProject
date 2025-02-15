@@ -55,7 +55,7 @@ $stmt->close();
         </div>
 
         <!-- Booking Form -->
-        <form action="payment.php?r=<?php echo $rid?>" method="POST">
+        <form action="payment.php?r=<?php echo $rid?>" method="POST" enctype="application/x-www-form-urlencoded">
             <label>Check-in Date:</label>
             <input type="date" name="checkin" required>
 
