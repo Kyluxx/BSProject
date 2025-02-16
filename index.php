@@ -103,10 +103,12 @@ session_start();
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             console.log("DOM Loaded")
+            
             const images = ["assets/hero/hero1.jpg", "assets/hero/hero2.jpg", "assets/hero/hero3.jpg"];
             let index = 0;
             const hero = document.querySelector(".hero");
-
+            hero.style.backgroundImage = `url('assets/hero/hero1.jpg')`;
+            
             function changeBackground() {
                 hero.style.backgroundImage = `url('${images[index]}')`;
                 /*

@@ -2,16 +2,15 @@
 session_start();
 include 'conn.php';
 if(!isset($_GET['r'])) { header("Location: index.php"); exit; }
+if(!isset($_POST)) { header("Location: index.php"); exit; }
 $rid = $_GET['r'];
 $roomimage = 'r' . $rid . '.jpg';
-$query = "SELECT * FROM room WHERE rid = ?";
+$query = "SELECT * from rooms WHERE rid = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $rid);
 $stmt->execute();
 $result = $stmt->get_result(); 
 $room = $result->fetch_assoc(); 
-$stmt->close();
-
 
 
 ?>
@@ -36,17 +35,20 @@ $stmt->close();
             <p><strong>Room:</strong> <?php echo $room['room_name']?></p>
             <p><strong>Check-in:</strong> 2025-02-20</p>
             <p><strong>Check-out:</strong> 2025-02-22</p>
-            <p><strong>Total Nights:</strong> <?php echo $_POST['total_days']?></p>
-            <p><strong>Guests:</strong> <?php echo $_POST['adult']?> Adults, <?php echo $_POST['child']?> Child</p>
+            <p><strong>Total Nights:</strong> <?php echo $_GET['total_days']?></p>
+            <p><strong>Guests:</strong> <?php echo $_GET['adult']?> Adults, <?php echo $_GET['child']?> Child</p>
             <p><strong>Payment Method:</strong> <?php if($_GET['paymethod'] == "cc"){
             echo htmlspecialchars("Credit Card");
             }else{
               echo htmlspecialchars("Account Balance");
             }?></p>
-            <p><strong>Total Price:</strong> $<?php echo htmlspecialchars($_POST['total_price'])?></p>
+            <p><strong>Total Price:</strong> $<?php echo htmlspecialchars($_GET['total_price'])?></p>
         </div>
         
         <a href="index.php" class="back-home">Back to Home</a>
     </div>
 </body>
 </html>
+<?php
+$stmt->close();
+?>

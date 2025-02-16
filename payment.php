@@ -4,7 +4,7 @@ include 'conn.php';
 if(!isset($_GET['r'])) { header("Location: index.php"); exit; }
 $rid = $_GET['r'];
 $roomimage = 'r' . $rid . '.jpg';
-$query = "SELECT * FROM room WHERE rid = ?";
+$query = "SELECT * from rooms WHERE rid = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $rid);
 $stmt->execute();
@@ -16,6 +16,8 @@ $stmt->close();
     
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["checkin"], $_POST["checkout"], $_POST["adults"], $_POST["children"])) {
+        $checkin_fw = $_POST['checkin'];
+        $checkout_fw = $_POST['checkout'];
         $checkin = new DateTime($_POST["checkin"]);
         $checkout = new DateTime($_POST["checkout"]);
         $interval = $checkin->diff($checkout);
@@ -26,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $adults = $_POST["adults"];
         $children = $_POST["children"];
             if($adults <= 0) { header("Location: booking.php?r=$rid&err=noadult"); exit; }
+            if($children < 0) { header("Location: booking.php?r=$rid&err=invalidchild"); exit; }
         if($adults > $room['adult_mcap'] || $children > $room['child_mcap']) { header("Location: booking.php?r=$rid&err=capexceed"); exit; }
         // Bisa lanjut proses booking atau simpan ke database di sini
     } else {
@@ -48,9 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container">
-        <?php if(isset($_GET['err'])){
-            if($_GET['err'] == balance) echo "<p style='color: red; font-weight: bold;'>Insufficient balance!</p>";
-        } ?>
+        
         <h2>Payment</h2>
         
         <!-- Booking Summary -->

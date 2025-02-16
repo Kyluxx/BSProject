@@ -12,7 +12,7 @@ if(!isset($_GET['r'])) {
 }
 $rid = $_GET['r'];
 $roomimage = 'r' . $rid . '.jpg';
-$query = "SELECT * FROM room WHERE rid = ?";
+$query = "SELECT * from rooms WHERE rid = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $rid);
 $stmt->execute();
@@ -43,10 +43,15 @@ $stmt->close();
           if($_GET['err'] == 'noadult'){
             echo "<p style='color: red; font-weight: bold;'>Atleast 1 adult is needed!</p>";
           }
+          if($_GET['err'] == 'invalidchild'){
+            echo "<p style='color: red; font-weight: bold;'>Invalid input!</p>";
+          }
           if($_GET['err'] == 'capexceed'){
             echo "<p style='color: red; font-weight: bold;'>Maximum Capacity Exceeded!</p>";
           }
-          }?>
+          if($_GET['err'] == 'balance') { echo "<p style='color: red; font-weight: bold;'>Insufficient balance!</p>"; 
+          }
+        }?>
             <img src="assets/rooms/<?php echo $roomimage;?>" alt="Room Preview">
             <h2><?php echo htmlspecialchars($room['room_name']); ?></h2>
             <p><?php echo htmlspecialchars($room['details']); ?></p>
@@ -55,7 +60,7 @@ $stmt->close();
         </div>
 
         <!-- Booking Form -->
-        <form action="payment.php?r=<?php echo $rid?>" method="POST" enctype="application/x-www-form-urlencoded">
+        <form action="payment.php?r=<?php echo $rid?>" method="POST">
             <label>Check-in Date:</label>
             <input type="date" name="checkin" required>
 

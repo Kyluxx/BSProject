@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
     // Cek apakah email sudah terdaftar
-    $checkQuery = "SELECT uid FROM user WHERE email = ?";
+    $checkQuery = "SELECT uid FROM users WHERE email = ?";
     $stmt = $conn->prepare($checkQuery);
     $stmt->bind_param("s", $email);
     $stmt->execute();

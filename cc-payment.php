@@ -41,7 +41,9 @@ if(!isset($_POST['total_days']) || !isset($_GET['r'])) { header("Location: payme
         total_days: "<?php echo $_POST['total_days'] ?>",
         total_price: "<?php echo $_POST['total_price'] ?>",
         adult: "<?php echo $_POST['adult'] ?>",
-        child: "<?php echo $_POST['child'] ?>"
+        child: "<?php echo $_POST['child'] ?>",
+        checkin_fw: "<?php echo $_POST['checkin'] ?>",
+        checkout_fw: "<?php echo $_POST['checkout'] ?>"
     };
 
     for (let key in hiddenInputs) {
