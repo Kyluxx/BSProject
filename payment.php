@@ -17,7 +17,7 @@ $stmt->close();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["checkin"], $_POST["checkout"], $_POST["adults"], $_POST["children"])) {
         $checkin_fw = $_POST['checkin'];
-        $checkout_fw = $_POST['checkout'];
+        $checkout_fw = $_POST['checkout'];  
         $checkin = new DateTime($_POST["checkin"]);
         $checkout = new DateTime($_POST["checkout"]);
         $interval = $checkin->diff($checkout);
@@ -96,6 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Tambahin input hidden buat data yang mau dikirim
     let inputs = {
         r: "<?php echo $rid ?>",
+        checkin_fw: "<?php echo $checkin_fw ?>",
+        checkout_fw: "<?php echo $checkout_fw ?>",
         total_days: "<?php echo $total_days ?>",
         total_price: "<?php echo $total_price ?>",
         adult: "<?php echo $adults ?>",

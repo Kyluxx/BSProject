@@ -73,3 +73,24 @@
             background: #dc3545;
             color: white;
         }
+
+        .o-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .o-popup-active {
+            display: flex;
+        }
+        .o-popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }

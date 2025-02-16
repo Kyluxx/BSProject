@@ -2,7 +2,7 @@
 session_start();
 include 'conn.php';
 if(!isset($_GET['r'])) { header("Location: index.php"); exit; }
-if(!isset($_POST)) { header("Location: index.php"); exit; }
+//if(!isset($_POST)) { header("Location: index.php"); exit; }
 $rid = $_GET['r'];
 $roomimage = 'r' . $rid . '.jpg';
 $query = "SELECT * from rooms WHERE rid = ?";

@@ -16,7 +16,7 @@ session_start();
         <div class="logo">Kyluxx Hotel</div>
         <div class="auth">
 <?php if(isset($_SESSION['user_id'])): ?>
-    <a href='profile.php'><?php echo htmlspecialchars($_SESSION['name']); ?></a>
+    <a ><?php echo htmlspecialchars($_SESSION['name']); ?></a>
     <a class='o-menu-btn' onclick='toggleOffcanvas()'>☰</a>
 <?php else: ?>
     <a href='login.php'>Login</a>
@@ -76,25 +76,53 @@ session_start();
         </div>
     </div>
 
+
     <?php
     if(isset($_SESSION['user_id'])):
 ?>
+    <?php include 'conn.php';
+    $stmt = $conn->prepare('SELECT * FROM users WHERE uid = ?');
+    $stmt->bind_param('i', $_SESSION['user_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+    ?>
+    <div class="o-popup" id="popup">
+        <div class="o-popup-content">
+            <h3>Your Account</h3>
+            <p>Name: <?php echo htmlspecialchars($user['name']); ?></p>
+            <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
+            <p>Balance: <?php echo htmlspecialchars($user['account_balance']); ?></p>
+            <button class="o-btn o-btn-primary" onclick="togglePopup()">Close</button>
+        </div>
+    </div>
     <div class="o-offcanvas" id="offcanvas">
         <div class="o-offcanvas-header">
-            <h3>Akun Anda</h3>
+            <h3>Hello! <?php echo htmlspecialchars($_SESSION['name']); ?></h3>
             <button class="o-close-btn" onclick="toggleOffcanvas()">✖</button>
         </div>
         <div class="o-offcanvas-body">
             <p><strong>Nama:</strong> <?php echo htmlspecialchars($_SESSION['name']); ?></p>
-            <p><strong>Balance:</strong> Rp1.500.000</p>
+            <p><strong>Balance:</strong> <?php echo htmlspecialchars("$" . $user['account_balance']); ?></p>
             <hr class="o-divider">
-            <button class="o-btn o-btn-primary" onclick="location.href='reservasi.php'">Reservasi Anda</button>
+            <button class="o-btn o-btn-primary" onclick="showPopup()">Profile</button>
+            <button class="o-btn o-btn-primary" onclick="location.href='reservasi.php'">Reservation</button>
             <button class="o-btn o-btn-danger" onclick="location.href='logout.php'">Log Out</button>
         </div>
     </div>
 <?php endif; ?>
 
 
+    <script>
+        function togglePopup() {
+            let popup = document.getElementById('popup');
+            popup.classList.toggle('o-popup-active');
+        }
+        function showPopup() {
+            let popup = document.getElementById('popup');
+            popup.classList.add('o-popup-active');
+        }
+    </script>
     <script>
         function toggleOffcanvas() {
             document.getElementById("offcanvas").classList.toggle("active");
