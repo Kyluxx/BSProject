@@ -120,3 +120,69 @@ body {
     font-weight: bold;
     margin-right: 0.4vw;
 }
+
+.scroll-container {
+    width: 300px;
+    height: 200px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+#reserved-li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#reserved-li li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd; /* Biar rapi */
+}
+/* Custom Scrollbar */
+.scroll-container::-webkit-scrollbar {
+    width: 6px; /* Ukuran scrollbar (kecil) */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: #6ec6ff; /* Biru muda */
+    border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Warna background scrollbar */
+}
+
+
+.cancel-btn {
+    margin-left: auto;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cancel-btn:hover {
+    background-color: darkred;
+}
+
+.info-btn {
+    background-color: #28a745; /* Hijau */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
+.info-btn:hover {
+    background-color: #1e7e34; /* Hijau tua */
+}

@@ -96,6 +96,32 @@ session_start();
             <button class="o-btn o-btn-primary" onclick="togglePopup()">Close</button>
         </div>
     </div>
+    <div class="o-popup" id="popup-reservation">
+        <div class="o-popup-content">
+        <h3>Reserved Room</h3>
+        <div class="scroll-container">
+        <ul id="reserved-li">
+
+        </ul>
+        </div>
+            <button class="o-btn o-btn-primary" onclick="togglePopupReserve()">Close</button>
+        </div>
+    </div>
+    <div class="o-popup" id="popup-room-details">
+        <div class="o-popup-content">
+            <h3>Room Details</h3>
+            <p id="rname"></p>
+            <p id="rprice"></p>
+            <p id="rdays"></p>
+            <p id="radult"></p>
+            <p id="rchild"></p>
+            <p id="rcin"></p>
+            <p id="rcout"></p>
+            <p id="rtday"></p>
+            
+            <button class="o-btn o-btn-primary" onclick="closeRoomInfo()">Close</button>
+        </div>
+    </div>
     <div class="o-offcanvas" id="offcanvas">
         <div class="o-offcanvas-header">
             <h3>Hello! <?php echo htmlspecialchars($_SESSION['name']); ?></h3>
@@ -106,13 +132,93 @@ session_start();
             <p><strong>Balance:</strong> <?php echo htmlspecialchars("$" . $user['account_balance']); ?></p>
             <hr class="o-divider">
             <button class="o-btn o-btn-primary" onclick="showPopup()">Profile</button>
-            <button class="o-btn o-btn-primary" onclick="location.href='reservasi.php'">Reservation</button>
+            <button class="o-btn o-btn-primary" onclick="getReservation()">Reservation</button>
             <button class="o-btn o-btn-danger" onclick="location.href='logout.php'">Log Out</button>
         </div>
     </div>
 <?php endif; ?>
 
 
+    <script>
+        function getReservation(){
+            fetch('get-reserved-room.php')
+                .then(response => response.json())
+                .then(data => {
+                    const ul = document.getElementById('reserved-li');
+                    if(data.length === 0) {
+                        const li = document.createElement('li');
+                        li.textContent = "You have no reserved room.";
+                        ul.prepend(li);
+                        return;
+                    }
+                    data.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item.room_name;
+                        li.textContent = item.room_name + " "; // Tambahin spasi biar ga nempel
+                
+                        const btn = document.createElement('button');
+                        btn.textContent = 'Cancel';
+                        btn.classList.add('cancel-btn'); // Bisa styling nanti
+                        btn.onclick = function() {
+                            cancelReservation(item.bid); // Panggil function cancel dengan ID
+                        };
+                        const btninfo = document.createElement('button');
+                        btninfo.textContent = '? ';
+                        btninfo.classList.add('info-btn'); // Bisa styling nanti
+                        btninfo.onclick = function() {
+                            infoReservation(item.bid); // Panggil function cancel dengan ID
+                        };
+                        li.prepend(btninfo);
+                        li.appendChild(btn);
+                        ul.appendChild(li);
+                    });
+                });
+            let popup = document.getElementById('popup-reservation');
+            popup.classList.toggle('o-popup-active');
+        }
+        function togglePopupReserve() {
+            let popup = document.getElementById('popup-reservation');
+            let lidata = document.getElementById('reserved-li');
+            popup.classList.toggle('o-popup-active');
+            lidata.innerHTML='';
+        }
+        function cancelReservation(bid){
+            fetch('cancel-reservation.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ bid: bid })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(err => console.error(err));
+        }
+        function infoReservation(bid){
+            document.getElementById("popup-room-details").classList.add("o-popup-active");
+            fetch('get-reserved-room.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ bid: bid })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("rname").textContent = `Room Name: ${data.room_name}`;
+                    document.getElementById("rprice").textContent = `Price per Night: $${data.price}`;
+                    document.getElementById("rdays").textContent = `Total Nights: ${data.total_day}`;
+                    document.getElementById("radult").textContent = `Adults: ${data.adult}`;
+                    document.getElementById("rchild").textContent = `Children: ${data.child}`;
+                    document.getElementById("rcin").textContent = `Check-in Date: ${data.check_in}`;
+                    document.getElementById("rcout").textContent = `Check-out Date: ${data.check_out}`;
+                    document.getElementById("rtday").textContent = `Total Price: $${data.total_price}`;
+                });
+        }
+        function closeRoomInfo(){
+            document.getElementById("popup-room-details").classList.remove("o-popup-active");
+        }
+    </script>
     <script>
         function togglePopup() {
             let popup = document.getElementById('popup');
