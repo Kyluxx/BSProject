@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, #121212, #1e1e1e);
-    color: #fff;
+    color: black;
 }
 
 /* Navbar */
@@ -53,6 +53,11 @@ body {
     text-align: center;
     background: #222;
 }
+
+.ab {
+    color: white;
+}
+
 .facilities {
     padding: 50px;
     text-align: center;
@@ -143,6 +148,9 @@ body {
     color: #ffd700;
 }
 
+.scroll-container li {
+    list-style: none;
+}
 /* Custom Scrollbar */
 .scroll-container::-webkit-scrollbar {
     width: 6px;

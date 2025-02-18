@@ -33,8 +33,8 @@ session_start();
 
     <!-- About Section -->
     <div class="about">
-        <h2>About Us</h2>
-        <p>Experience the best hospitality with world-class services and luxurious comfort.</p>
+        <h2 class="ab">About Us</h2>
+        <p class="ab">Experience the best hospitality with world-class services and luxurious comfort.</p>
     </div>
 
     <!-- Facilities -->
