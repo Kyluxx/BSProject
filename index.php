@@ -92,7 +92,8 @@ session_start();
             <h3>Your Account</h3>
             <p>Name: <?php echo htmlspecialchars($user['name']); ?></p>
             <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
-            <p>Balance: <?php echo htmlspecialchars($user['account_balance']); ?></p>
+            <p>Balance: $<?php echo htmlspecialchars($user['account_balance']); ?></p>
+            <button class="o-btn o-btn-danger" onclick="deleteAccount();">Delete account</button>
             <button class="o-btn o-btn-primary" onclick="togglePopup()">Close</button>
         </div>
     </div>
@@ -133,12 +134,26 @@ session_start();
             <hr class="o-divider">
             <button class="o-btn o-btn-primary" onclick="showPopup()">Profile</button>
             <button class="o-btn o-btn-primary" onclick="getReservation()">Reservation</button>
+            <button class="o-btn o-btn-primary" onclick="topupBal()">Top-up Balance</button>
             <button class="o-btn o-btn-danger" onclick="location.href='logout.php'">Log Out</button>
         </div>
     </div>
 <?php endif; ?>
 
 
+    <script>
+        function deleteAccount(){
+            if (confirm("This action will DELETE your account and all its associated data PERMANENTLY! Including the ACCOUNT BALANCE. Are you sure?")) {
+                window.location.href = 'delete-account.php';
+            }
+        }
+    </script>
+    
+    <script>
+        function topupBal(){
+            window.location.href = 'topup.php';
+        }
+    </script>
     <script>
         function getReservation(){
             fetch('get-reserved-room.php')

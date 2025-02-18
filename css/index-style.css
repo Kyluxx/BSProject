@@ -1,9 +1,10 @@
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background: linear-gradient(to bottom, #121212, #1e1e1e);
+    color: #fff;
 }
 
 /* Navbar */
@@ -11,9 +12,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background:	#805A40;
+    background: linear-gradient(to right, #b8860b, #8b6508);
     color: white;
     padding: 15px 20px;
+    box-shadow: 0px 4px 8px rgba(255, 215, 0, 0.2);
 }
 .navbar .logo {
     font-size: 24px;
@@ -30,15 +32,16 @@ body {
     position: relative;
     width: 100%;
     height: 100vh;
-    background: url('./assets/hero/hero1.jpg') center/cover no-repeat;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url('./assets/hero/hero1.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white;
+    color: #ffd700;
     font-size: calc(40vw / 10);
     font-weight: bold;
-    transition: background 1s ease-in-out;
+    text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.5);
+    transition: background 0.5s;
 }
 .hero-desc {
     font-size: calc(20vw/10);
@@ -48,12 +51,12 @@ body {
 .about {
     padding: 50px;
     text-align: center;
-    background: #f9f9f9;
+    background: #222;
 }
 .facilities {
     padding: 50px;
     text-align: center;
-    background: #805A40;
+    background: linear-gradient(to right, #b8860b, #8b6508);
     color: white;
 }
 .facility-list {
@@ -66,9 +69,10 @@ body {
     width: 200px;
     padding: 20px;
     border-radius: 10px;
-    background: #eee;
+    background: #333;
     text-align: center;
-    color: black;
+    color: #ffd700;
+    box-shadow: 0px 4px 6px rgba(255, 215, 0, 0.3);
 }
 
 /* Rooms Preview */
@@ -79,12 +83,12 @@ body {
     padding: 20px;
 }
 .room-card {
-    background: white;
+    background: #1c1c1c;
     width: 300px;
     margin: 15px;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
     transition: transform 0.3s;
 }
 .room-card:hover {
@@ -97,21 +101,28 @@ body {
 .room-card .details {
     padding: 15px;
     text-align: center;
+    color: white;
 }
 .room-card .details h3 {
     margin: 10px 0;
+    color: #ffd700;
 }
 .room-card .details p {
-    color: #777;
+    color: #aaa;
 }
 .room-card .details .btn {
     display: inline-block;
     padding: 10px 15px;
-    background: #007bff;
+    background: linear-gradient(to right, #b8860b, #8b6508);
     color: white;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 10px;
+    box-shadow: 0px 2px 4px rgba(255, 215, 0, 0.3);
+    transition: 0.3s;
+}
+.room-card .details .btn:hover {
+    background: #d4af37;
 }
 
 .auth a {
@@ -125,56 +136,40 @@ body {
     width: 300px;
     height: 200px;
     overflow-y: auto;
-    background: white;
+    background: #222;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 6px rgba(255, 215, 0, 0.3);
     padding: 10px;
+    color: #ffd700;
 }
 
-#reserved-li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#reserved-li li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    border-bottom: 1px solid #ddd; /* Biar rapi */
-}
 /* Custom Scrollbar */
 .scroll-container::-webkit-scrollbar {
-    width: 6px; /* Ukuran scrollbar (kecil) */
+    width: 6px;
 }
-
 .scroll-container::-webkit-scrollbar-thumb {
-    background-color: #6ec6ff; /* Biru muda */
+    background-color: #ffd700;
     border-radius: 10px;
 }
-
 .scroll-container::-webkit-scrollbar-track {
-    background: #f0f0f0; /* Warna background scrollbar */
+    background: #444;
 }
-
 
 .cancel-btn {
     margin-left: auto;
     padding: 5px 10px;
-    background-color: red;
+    background: red;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
 }
-
 .cancel-btn:hover {
-    background-color: darkred;
+    background: darkred;
 }
 
 .info-btn {
-    background-color: #28a745; /* Hijau */
+    background: #28a745;
     color: white;
     padding: 5px 10px;
     border: none;
@@ -182,7 +177,6 @@ body {
     border-radius: 5px;
     margin-right: 8px;
 }
-
 .info-btn:hover {
-    background-color: #1e7e34; /* Hijau tua */
+    background: #1e7e34;
 }

@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: index.php");
             exit;
         } else {
-            echo "window.location.href='login.php?err=wrongpassword';</script>";
+            echo "<script>alert('Wrong password');window.location.href='login.php?err=wrongpassword';</script>";
         }
     } else {
         echo "<script>alert('User not found.'); window.location.href='login.php?nouser';</script>";

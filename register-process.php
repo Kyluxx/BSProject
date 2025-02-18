@@ -1,24 +1,24 @@
 <?php
 session_start();
-include 'conn.php'; // Pastikan koneksi database tersedia
+include 'conn.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullname = trim($_POST['fullname']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     
-    // Validasi input
     if (empty($fullname) || empty($email) || empty($password)) {
         echo "<script>alert('All fields are required!'); window.history.back();</script>";
         exit;
     }
 
-    // Hash password
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-    // Cek apakah email sudah terdaftar
     $checkQuery = "SELECT uid FROM users WHERE email = ?";
     $stmt = $conn->prepare($checkQuery);
+    if ($stmt === false) {
+        die('Prepare failed: ' . $conn->error);
+    }
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
@@ -29,9 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $stmt->close();
 
-    // Simpan ke database
-    $query = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
+    $query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($query);
+    if ($stmt === false) {
+        die('Prepare failed: ' . $conn->error);
+    }
     $stmt->bind_param("sss", $fullname, $email, $hashed_password);
     
     if ($stmt->execute()) {
@@ -46,3 +48,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: register.php");
     exit;
 }
+
