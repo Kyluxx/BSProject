@@ -130,7 +130,7 @@ session_start();
             <button class="o-close-btn" onclick="toggleOffcanvas()">✖</button>
         </div>
         <div class="o-offcanvas-body">
-            <p><strong>Nama:</strong> <?php echo htmlspecialchars($_SESSION['name']); ?></p>
+            <p><strong>Name:</strong> <?php echo htmlspecialchars($_SESSION['name']); ?></p>
             <p><strong>Balance:</strong> <?php echo htmlspecialchars("$" . $user['account_balance']); ?></p>
             <hr class="o-divider">
             <button class="o-btn o-btn-primary" onclick="showPopup()">Profile</button>
