@@ -28,6 +28,7 @@ Buka 127.0.0.1:3000 di browser untuk melihat tampilan.
 
 Mau kontribusi? Silakan fork repo ini dan buat pull request!
 
-## 📜 Lisensi
+## 📜 Lisensi  
 
-GPL 3.0 License Gunakan dengan bebas dan sesuaikan sesuai kebutuhan!
+Lisensi di bawah **GNU General Public License v3.0 (GPL-3.0)**.  
+Baca lebih lanjut di [LICENSE](LICENSE).
