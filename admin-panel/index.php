@@ -13,41 +13,42 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['isadmin']) || $_SESSION['i
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/admin-style.css">
 </head>
 <body>
-    <nav>
-        <a href="logout.php">Logout</a>
+    <nav class="navbar">
+        <div class="logo">Admin Panel</div>
+        <a href="../logout.php" class="btn logout">Logout</a>
     </nav>
-    <main>
-        <h1>Admin Panel</h1>
-        <section>
-            <h2>Rooms</h2>
-            <ul>
-                <li><a href="add-room.php">Add a new room</a></li>
-                <li><a href="view-rooms.php">Check details of all rooms</a></li>
-                <li><a href="modify-room.php">Modify room details</a></li>
-                <li><a href="delete-room.php">Remove an existing room</a></li>
-            </ul>
-        </section>
-        <section>
-            <h2>Users</h2>
-            <ul>
-                <li><a href="add-user.php">Create a new user</a></li>
-                <li><a href="view-users.php">Check details of all users</a></li>
-                <li><a href="modify-user.php">Modify user details (excluding Balance)</a></li>
-                <li><a href="delete-user.php">Remove an existing user</a></li>
-            </ul>
-        </section>
-        <section>
-            <h2>Reservations</h2>
-            <ul>
-                <li><a href="accept-topup.php">Accept Top-up process from users</a></li>
-                <li><a href="delete-reservation.php">Delete an existing reservation from a user</a></li>
-            </ul>
-        </section>
+    <main class="container">
+        <h1>Admin Dashboard</h1>
+        <div class="grid">
+            <section class="card">
+                <h2>Rooms Management</h2>
+                <ul>
+<!--                    <li><a href="add-room.php" class="btn">➕ Add Room</a></li> -->
+                    <li><a href="view-rooms.php" class="btn">📋 View Rooms</a></li>
+                    <li><a href="modify-room.php" class="btn">✏️ Modify Room</a></li>
+                <!--     <li><a href="delete-room.php" class="btn danger">🗑 Remove Room</a></li>  -->
+                </ul>
+            </section>
+            <section class="card">
+                <h2>User Management</h2>
+                <ul>
+                    <li><a href="add-user.php" class="btn">➕ Add User</a></li>
+                    <li><a href="view-users.php" class="btn">📋 View Users</a></li>
+                    <li><a href="modify-user.php" class="btn">✏️ Modify User</a></li>
+                    <li><a href="delete-user.php" class="btn danger">🗑 Remove User</a></li>
+                </ul>
+            </section>
+            <section class="card">
+                <h2>Reservations</h2>
+                <ul>
+                    <!--<li><a href="accept-topup.php" class="btn">✅ Accept Top-up</a></li>-->
+                    <li><a href="delete-reservation.php" class="btn danger">🗑 Delete Reservation</a></li>
+                </ul>
+            </section>
+        </div>
     </main>
-    
-    <script src="js/script.js"></script>
 </body>
 </html>

@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: admin-panel/index.php");
                 exit;
             }
+            $_SESSION['isadmin'] = false;
             header("Location: index.php");
             exit;
         } else {
