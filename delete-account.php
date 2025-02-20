@@ -9,6 +9,20 @@ if (isset($_SESSION['user_id'])) {
     $deleteQuery = "DELETE FROM users WHERE uid = ?";
     $stmt = $conn->prepare($deleteQuery);
     $stmt->bind_param("i", $userId);
+
+        // Check account balance
+        $balanceQuery = "SELECT account_balance FROM users WHERE uid = ?";
+        $stmt = $conn->prepare($balanceQuery);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $stmt->bind_result($accountBalance);
+        $stmt->fetch();
+        $stmt->close();
+    
+        if ($accountBalance > 0) {
+            echo "<script>alert('Cannot delete account, still have a balance.'); window.location.href='index.php';</script>";
+            exit;
+        }
     
     if ($stmt->execute()) {
         // Destroy session
