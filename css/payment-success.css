@@ -1,43 +1,58 @@
 body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            text-align: center;
-        }
-        img {
-            width: 100%;
-            border-radius: 5px;
-        }
-        .success-message {
-            color: #28a745;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .details {
-            margin-top: 15px;
-            text-align: left;
-        }
-        .back-home {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .back-home:hover {
-            background: #0056b3;
-        }
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Georgia', serif;
+    background: #F9F6F0; /* ivory */
+    color: #1A1F36;      /* deep navy */
+  }
+  
+  .container {
+    width: 400px;
+    padding: 20px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  img {
+    width: 100%;
+    border: 2px solid #F5E1A4; /* gold border */
+  }
+  
+  .success-message {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #27AE60; /* keep green for success */
+    font-family: 'Georgia', serif;
+  }
+  
+  .details {
+    margin-top: 15px;
+    text-align: left;
+    font-family: 'Georgia', serif;
+    color: #1A1F36;
+  }
+  
+  .back-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #F5E1A4; /* soft gold */
+    color: #1A1F36;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .back-home:hover {
+    background: #E0C984; /* darker gold */
+  }
+  

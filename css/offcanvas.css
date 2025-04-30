@@ -1,96 +1,103 @@
-
-        /* Tombol Buka */
-        .o-menu-btn {
-            position: relative;
-            font-size: larger;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        /* Offcanvas */
-        .o-offcanvas {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100%;
-            background: #fff;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-            transition: right 0.3s ease-in-out;
-            padding: 20px;
-        }
-
-        /* Offcanvas aktif */
-        .o-offcanvas.active {
-            right: 0;
-        }
-
-        /* Offcanvas Header */
-        .o-offcanvas-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .o-close-btn {
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        /* Offcanvas Body */
-        .o-offcanvas-body p {
-            margin-bottom: 10px;
-        }
-
-        .o-divider {
-            border-top: 1px solid #ccc;
-            margin: 15px 0;
-        }
-
-        .o-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-
-        .o-btn-primary {
-            background: #007bff;
-            color: white;
-        }
-
-        .o-btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-
-        .o-popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
-        .o-popup-active {
-            display: flex;
-        }
-        .o-popup-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
+/* Menu Button */
+.o-menu-btn {
+    position: relative;
+    font-family: 'Georgia', serif;
+    font-size: 1.25rem;
+    padding: 10px 15px;
+    /* background: #F5E1A4; /* soft gold */
+    color: #1A1F36;      /* deep navy */
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  
+  /* Offcanvas Panel */
+  .o-offcanvas {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    background: #F9F6F0; /* ivory */
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease-in-out;
+    padding: 20px;
+    font-family: 'Georgia', serif;
+    color: #1A1F36;
+  }
+  
+  /* Active Offcanvas */
+  .o-offcanvas.active {
+    right: 0;
+  }
+  
+  /* Offcanvas Header */
+  .o-offcanvas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .o-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: #1A1F36;
+  }
+  
+  /* Offcanvas Body */
+  .o-offcanvas-body p {
+    margin-bottom: 10px;
+  }
+  .o-divider {
+    border-top: 1px solid #1A1F36;
+    margin: 15px 0;
+  }
+  
+  /* Offcanvas Buttons */
+  .o-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+  }
+  .o-btn-primary {
+    background: #F5E1A4; /* soft gold */
+    color: #1A1F36;
+  }
+  .o-btn-danger {
+    background: #C0392B; /* deep red */
+    color: #F9F6F0;      /* ivory text */
+  }
+  
+  /* Popup Overlay */
+  .o-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  .o-popup-active {
+    display: flex;
+  }
+  
+  /* Popup Content */
+  .o-popup-content {
+    background: #F9F6F0; /* ivory */
+    padding: 20px;
+    font-family: 'Georgia', serif;
+    color: #1A1F36;
+  }
+  

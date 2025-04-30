@@ -2,32 +2,44 @@
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    border-radius: 10px;
-    background: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background: #1A1F36; /* deep navy */
+    color: #F5E1A4;       /* soft gold */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     text-align: center;
+    font-family: 'Georgia', serif;
 }
 
 .room-preview img {
     width: 100%;
-    border-radius: 10px;
+    border: 2px solid #F5E1A4; /* gold border */
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 input {
-    padding: 8px;
+    padding: 10px;
     font-size: 16px;
+    border: 1px solid #F5E1A4;
+    background: #F9F6F0; /* ivory tone */
+    color: #1A1F36;
+    font-family: 'Georgia', serif;
 }
 
 button {
-    padding: 10px;
-    background: #007BFF;
-    color: white;
+    padding: 12px;
+    background: #F5E1A4; /* gold */
+    color: #1A1F36;      /* navy text */
     border: none;
     cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+}
+
+button:hover {
+    background: #E0C984; /* darker gold on hover */
 }
